@@ -1,12 +1,18 @@
 package com.userfront.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * Created by vbilenko on 12/16/16.
  */
+
+@Entity
 public class SavingTransaction {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date date;
     private String description;
@@ -15,6 +21,8 @@ public class SavingTransaction {
     private Double amount;
     private BigDecimal availableBalance;
 
+    @ManyToOne
+    @JoinColumn(name = "saving_account_id")
     private SavingAccount savingAccount;
 
     public SavingTransaction() {
